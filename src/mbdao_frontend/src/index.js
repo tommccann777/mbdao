@@ -1,19 +1,19 @@
 import { mbdao_backend } from "../../declarations/mbdao_backend";
 
-document.querySelector("form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const button = e.target.querySelector("button");
+document.getElementById("mottochange").addEventListener("click", async (e) => {
+  console.log("mottochange clicked");
+  
+  // Interact with actor
+  const new_orgmotto = await mbdao_backend.get_orgmotto();
 
-  const name = document.getElementById("name").value.toString();
+  document.getElementById("orgmotto").innerText = new_orgmotto;
+});
 
-  button.setAttribute("disabled", true);
+document.getElementById("orgchange").addEventListener("click", async (e) => {
+  console.log("orgchange clicked");
+  
+  // Interact with actor
+  const new_orgname = await mbdao_backend.get_orgname();
 
-  // Interact with foo actor, calling the greet method
-  const greeting = await mbdao_backend.greet(name);
-
-  button.removeAttribute("disabled");
-
-  document.getElementById("greeting").innerText = greeting;
-
-  return false;
+  document.getElementById("orgname").innerText = new_orgname;
 });
